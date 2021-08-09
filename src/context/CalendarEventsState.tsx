@@ -20,7 +20,7 @@ const getEventsFromLocalStorage = () => {
         urgent: false,
       },
       {
-        id: generateId(),
+        id: generateId(1),
         title: "Meeting leadership",
         eventDate: dayjs(new Date()).add(1, "day").toDate(),
         startBox: 5,
@@ -28,7 +28,7 @@ const getEventsFromLocalStorage = () => {
         urgent: true,
       },
       {
-        id: generateId(),
+        id: generateId(2),
         title: "Manager 1:1",
         eventDate: dayjs(new Date()).add(1, "day").toDate(),
         startBox: 5,
@@ -36,7 +36,7 @@ const getEventsFromLocalStorage = () => {
         urgent: false,
       },
       {
-        id: generateId(),
+        id: generateId(3),
         title: "PR review",
         eventDate: dayjs(new Date()).subtract(1, "day").toDate(),
         startBox: 7,
@@ -44,7 +44,7 @@ const getEventsFromLocalStorage = () => {
         urgent: true,
       },
       {
-        id: generateId(),
+        id: generateId(4),
         title: "Second PR",
         eventDate: dayjs(new Date()).add(2, "day").toDate(),
         startBox: 9,
