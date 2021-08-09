@@ -1,0 +1,3 @@
+# calendar-vite
+
+Calendar app
