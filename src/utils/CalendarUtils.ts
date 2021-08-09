@@ -23,8 +23,9 @@ export const daysOfWeek: string[] = [
   "Sat",
 ];
 
-export const generateId = () => {
-  return new Date().valueOf().toString();
+export const generateId = (add?: number) => {
+  const addValue = add ? add : 0;
+  return (new Date().valueOf() + addValue).toString();
 };
 
 export const fetchTime = (boxNumber: number) => {
