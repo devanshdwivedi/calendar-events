@@ -71,7 +71,7 @@ export default function Day({ date }: DayProps) {
   };
 
   const generateEventDayObject = () => {
-    const newEventDayObj: any = {};
+    const newEventDayObj: EventDayObject = {};
     events.forEach((event: CalendarEvent) => {
       if (dayjs(event.eventDate).isSame(date, "day")) {
         let startBox = event.startBox;
