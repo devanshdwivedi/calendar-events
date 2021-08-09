@@ -7,8 +7,9 @@ import dayjs from "dayjs";
 const localStorageKey = "calendarEvents";
 
 const getEventsFromLocalStorage = () => {
-  let events: any = window.localStorage.getItem(localStorageKey);
-  if (!events) {
+  let eventsStr: string | null = window.localStorage.getItem(localStorageKey);
+  let events: CalendarEvent[];
+  if (!eventsStr) {
     events = [
       {
         id: generateId(),
@@ -52,7 +53,7 @@ const getEventsFromLocalStorage = () => {
       },
     ];
   } else {
-    events = JSON.parse(events);
+    events = JSON.parse(eventsStr);
   }
   return events;
 };
