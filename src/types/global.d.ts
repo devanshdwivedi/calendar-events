@@ -40,6 +40,9 @@ declare interface BoxProps {
   date: Date;
   boxNumber: number;
 }
+declare interface LabelBoxProps {
+  boxNumber: number;
+}
 declare interface DayProps {
   date: Date;
 }

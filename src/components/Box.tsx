@@ -66,7 +66,7 @@ export default function Box({ date, boxNumber }: BoxProps) {
   );
 }
 
-export function LabelBox({ boxNumber }: any) {
+export function LabelBox({ boxNumber }: LabelBoxProps) {
   let labelBoxWidth = "40px";
 
   return (
