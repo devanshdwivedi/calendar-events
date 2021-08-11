@@ -61,6 +61,7 @@ export default function Day({ date }: DayProps) {
                 endBox={event.endBox}
                 left={index}
                 parentWidth={parentWidth}
+                highlightEvent={event.highlightEvent}
               />
             );
           })}

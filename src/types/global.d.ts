@@ -5,6 +5,7 @@ declare interface CalendarEvent {
   endBox: number;
   eventDate: Date;
   urgent: boolean;
+  highlightEvent?: boolean;
 }
 
 declare interface CalendarDragEvent {
@@ -18,6 +19,7 @@ declare interface GlobalStateObject {
   events: CalendarEvent[];
   addEvent(event: CalendarEvent): void;
   removeEvent(id: string): void;
+  highlightEvents(searchTerm: string): void;
 }
 
 interface BaseActionPayload {
@@ -72,6 +74,7 @@ declare interface EventBubbleProps {
   endBox: number;
   id: string;
   urgent: boolean;
+  highlightEvent?: boolean;
 }
 declare interface GlobalStateObject {
   events: CalendarEvent[];

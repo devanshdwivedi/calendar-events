@@ -1,4 +1,4 @@
-import { ADD_EVENT, EDIT_EVENT, REMOVE_EVENT } from "./CalendarEventsConstants";
+import { ADD_EVENT, EDIT_EVENT, HIGHLIGHT_EVENT, REMOVE_EVENT } from "./CalendarEventsConstants";
 
 export default function CalendarEventsReducer(
   state: any,
@@ -9,6 +9,24 @@ export default function CalendarEventsReducer(
       return {
         ...state,
         events: [...state.events, action.payload],
+      };
+
+    case HIGHLIGHT_EVENT:
+      
+      const updatedEvents = [...state.events].map((event: any)=>{
+        if(action.payload === ""){
+          event.highlightEvent = false;
+        }
+        else if(typeof(action.payload) === 'string' && event.title.toLowerCase().indexOf(action.payload.toLowerCase()) > -1){
+          event.highlightEvent = true;
+        }else{
+          event.highlightEvent = false;
+        }
+        return event;
+      });
+      return {
+        ...state,
+        events: updatedEvents,
       };
 
     case EDIT_EVENT:

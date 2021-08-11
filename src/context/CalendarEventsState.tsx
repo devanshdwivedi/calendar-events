@@ -1,6 +1,6 @@
 import React, { createContext, useEffect, useReducer } from "react";
 import { generateId } from "../utils/CalendarUtils";
-import { ADD_EVENT, EDIT_EVENT, REMOVE_EVENT } from "./CalendarEventsConstants";
+import { ADD_EVENT, EDIT_EVENT, HIGHLIGHT_EVENT, REMOVE_EVENT } from "./CalendarEventsConstants";
 import CalendarEventsReducer from "./CalendarEventsReducer";
 import dayjs from "dayjs";
 
@@ -54,6 +54,9 @@ const getEventsFromLocalStorage = () => {
     ];
   } else {
     events = JSON.parse(eventsStr);
+    events.forEach((event: CalendarEvent)=>{
+      event.highlightEvent = false;
+    });
   }
   return events;
 };
@@ -63,6 +66,7 @@ const initialState: GlobalStateObject = {
   addEvent: (event: CalendarEvent) => {},
   removeEvent: (id: string) => {},
   editEvent: (event: CalendarEvent) => {},
+  highlightEvents: (searchTerm: string) => {}
 };
 
 export const EventContext = createContext(initialState);
@@ -99,6 +103,13 @@ export const EventProvider = (props: any) => {
       payload: event,
     });
   }
+  
+  function highlightEvents(searchTerm: string){
+    dispatch({
+      type: HIGHLIGHT_EVENT,
+      payload: searchTerm
+    });
+  }
 
   return (
     <EventContext.Provider
@@ -107,6 +118,7 @@ export const EventProvider = (props: any) => {
         addEvent,
         removeEvent,
         editEvent,
+        highlightEvents,
       }}
     >
       {props.children}

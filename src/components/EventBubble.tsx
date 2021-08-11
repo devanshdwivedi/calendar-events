@@ -15,6 +15,7 @@ export function EventBubble({
   parentWidth,
   id,
   urgent,
+  highlightEvent,
 }: EventBubbleProps) {
   /**
    * Manipulate DOM height/Width and left properties to render Multiple event bubbles
@@ -70,7 +71,7 @@ export function EventBubble({
         onDragOver={(event) => onDragOver(event)}
         onClick={() => setIsModalOpen(true)}
         style={{
-          border: "1px solid white",
+          border:  highlightEvent ? "2px solid red" : "1px solid white",
           position: "absolute",
           color: urgent ? "White" : "initial",
           backgroundColor: urgent

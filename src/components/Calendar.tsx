@@ -1,14 +1,29 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback, useContext } from "react";
 import Day, { LabelDay } from "./Day";
-import { monthNames } from "../utils/CalendarUtils";
+import { debounce, monthNames } from "../utils/CalendarUtils";
 import EventModal from "./EventModal";
 import Modal from "react-modal";
 import dayjs from "dayjs";
+import { EventContext } from "../context/CalendarEventsState";
 
 function Calendar({ startDate }: CalendarProps) {
+
+  const { highlightEvents } = useContext(EventContext);
+
+  const debouncedHighLights = debounce(highlightEvents, 1000);
+  
   const [startOfWeek, setStartOfWeek] = useState<Date>();
   const [days, setDays] = useState<Date[]>();
   const [mainDate, setMainDate] = useState<Date>();
+
+  const [searchItem, setSearchItem] = useState<string>("");
+
+  const debouceRequest = useCallback(searchItem => debouncedHighLights(searchItem), []);
+
+  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    debouceRequest(e.target.value);
+    setSearchItem(e.target.value);
+  };
 
   useEffect(() => {
     if (startDate) {
@@ -69,6 +84,7 @@ function Calendar({ startDate }: CalendarProps) {
         closeCallback={() => setIsModalOpen(false)}
       />
       <div>
+        <input onChange={onChange} type="text" value={searchItem} />
         <div
           style={{
             display: "flex",

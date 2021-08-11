@@ -13,6 +13,26 @@ export const monthNames: string[] = [
   "December",
 ];
 
+export const debounce = (callback: any, delay: number) => {
+
+  let timerId: any = null;
+
+  return function(...args: any) {
+    if(timerId === null){
+      timerId = setTimeout(()=>{
+        callback(...args);
+        timerId = null;
+      }, delay)
+    }else{
+      clearTimeout(timerId);
+      timerId = setTimeout(()=>{
+        callback(...args);
+        timerId = null;
+      }, delay)
+    }
+  }
+};
+
 export const daysOfWeek: string[] = [
   "Sun",
   "Mon",
