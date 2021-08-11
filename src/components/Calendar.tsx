@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback, useContext } from "react";
 import Day, { LabelDay } from "./Day";
-import { debounce, monthNames } from "../utils/CalendarUtils";
+import { debounce, monthNames, useDebouncedEffect } from "../utils/CalendarUtils";
 import EventModal from "./EventModal";
 import Modal from "react-modal";
 import dayjs from "dayjs";
@@ -31,11 +31,11 @@ function Calendar({ startDate }: CalendarProps) {
     }
   }, [startDate]);
 
-  useEffect(() => {
+  useDebouncedEffect(() => {
     if (mainDate) {
       setStartOfWeek(dayjs(mainDate).startOf("week").toDate());
     }
-  }, [mainDate]);
+  }, [mainDate], 1000);
 
   useEffect(() => {
     if (startOfWeek) {
